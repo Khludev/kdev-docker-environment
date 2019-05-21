@@ -1,0 +1,129 @@
+version: '2'
+services:
+
+  nginx:
+    container_name: nginx
+    build: ./images/nginx
+    ports:
+      - "80:80"
+      - "1443:443"
+    volumes:
+      - ./hosts:/etc/nginx/conf.d
+      - ./www:/var/www
+      - ./logs:/var/log/nginx
+    working_dir: /var/www/
+
+    links:
+      - php5.6
+      - php7.0
+      - php7.1
+      - php7.2
+      - php7.3
+      - php7.2-sybase
+
+  php5.6:
+    build: ./images/php/php5.6
+    container_name: php5.6
+    links:
+      - mysql
+    volumes:
+      - ./www:/var/www
+    working_dir: /var/www/
+
+  php7.0:
+    build: ./images/php/php7.0
+    container_name: php7.0
+    links:
+      - mysql
+    volumes:
+      - ./www:/var/www
+    working_dir: /var/www/
+
+  php7.1:
+    build: ./images/php/php7.1
+    container_name: php7.1
+    links:
+      - mysql
+    volumes:
+      - ./www:/var/www
+    working_dir: /var/www/
+
+
+  php7.2:
+    build: ./images/php/php7.2
+    container_name: php7.2
+    links:
+      - mysql
+    volumes:
+      - ./www:/var/www
+    working_dir: /var/www/
+
+
+  php7.3:
+    build: ./images/php/php7.3
+    container_name: php7.3
+    links:
+      - mysql
+    volumes:
+      - ./www:/var/www
+    working_dir: /var/www/
+
+  php7.2-sybase:
+    build: ./images/php/php7.2-sybase
+    container_name: php7.2-sybase
+    links:
+      - mysql
+    volumes:
+      - ./www:/var/www
+    working_dir: /var/www/
+
+  memcached:
+    image: memcached:latest
+    container_name: memcached
+    ports:
+      - "11211:11211"
+    restart: always
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    restart: always
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./images/mysql/my.cnf:/etc/my.cnf
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=root
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    links:
+      - mysql
+    environment:
+      - PMA_HOST=mysql
+      - PMA_POR=3306
+    ports:
+      - '8080:80'
+
+#  node:
+#    image: node:alpine
+#    container_name: node
+#    volumes:
+#      - ./www/hostel:/app
+#    working_dir: /app
+#    command: npm install
+
+
+#Example extends module
+#  php:
+#    extends:
+#      service: php7.2
+#    command: echo php -v
+
+
+
+
+

@@ -1,0 +1,10 @@
+/.idea/
+/logs/
+/www/*
+!/www/site.example
+/mysql/
+/hosts/*
+!/www/readme.md
+/configs
+/dump
+!www/site.example/index.php
