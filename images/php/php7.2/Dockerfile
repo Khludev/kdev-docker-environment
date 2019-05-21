@@ -227,6 +227,9 @@ RUN apt-get update && apt-get install -y git && \
         #install UNZIP
          apt-get install unzip ;
 
+#Вход в контейнер под локальным пользователем (Указать в env файле)
+RUN echo "ROOT_NAME:x:1000:1000:ROOT_NAME,,,:/home/ROOT_NAME:/bin/bash" >> /etc/passwd
+
 COPY ./php.ini /usr/local/etc/php/conf.d
 
 EXPOSE 9000

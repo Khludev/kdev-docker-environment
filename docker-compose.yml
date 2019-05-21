@@ -52,6 +52,10 @@ services:
   php7.2:
     build: ./images/php/php7.2
     container_name: php7.2
+    env_file: .env
+    environment:
+      - ROOT_NAME=${ROOT_NAME}
+    user: ROOT_NAME
     links:
       - mysql
     volumes:
