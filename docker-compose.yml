@@ -4,9 +4,12 @@ services:
   nginx:
     container_name: nginx
     build: ./images/nginx
+    env_file: .env
+    environment:
+      - ROOT_NAME=${ROOT_NAME}
     ports:
       - "80:80"
-      - "1443:443"
+      - "443:443"
     volumes:
       - ./hosts:/etc/nginx/conf.d
       - ./www:/var/www
@@ -51,11 +54,11 @@ services:
 
   php7.2:
     build: ./images/php/php7.2
-    container_name: php7.2
     env_file: .env
     environment:
       - ROOT_NAME=${ROOT_NAME}
     user: ROOT_NAME
+    container_name: php7.2
     links:
       - mysql
     volumes:
@@ -111,6 +114,8 @@ services:
       - PMA_POR=3306
     ports:
       - '8080:80'
+
+
 
 #  node:
 #    image: node:alpine

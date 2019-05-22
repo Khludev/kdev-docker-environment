@@ -92,6 +92,12 @@ RUN set -x \
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log
 
+#Вход в контейнер под локальным пользователем (Указать в env файле)
+RUN echo "ROOT_NAME:x:1000:1000:ROOT_NAME,,,:/home/ROOT_NAME:/bin/bash" >> /etc/passwd
+
+COPY ./nginx.conf /etc/nginx/conf.d/
+
+
 EXPOSE 80
 
 STOPSIGNAL SIGTERM

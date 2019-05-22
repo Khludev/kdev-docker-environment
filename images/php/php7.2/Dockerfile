@@ -230,6 +230,11 @@ RUN apt-get update && apt-get install -y git && \
 #Вход в контейнер под локальным пользователем (Указать в env файле)
 RUN echo "ROOT_NAME:x:1000:1000:ROOT_NAME,,,:/home/ROOT_NAME:/bin/bash" >> /etc/passwd
 
+RUN apt-get update -qq && apt-get install -y \
+  ghostscript \
+  libgs-dev \
+  imagemagick
+
 COPY ./php.ini /usr/local/etc/php/conf.d
 
 EXPOSE 9000
