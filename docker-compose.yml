@@ -4,9 +4,6 @@ services:
   nginx:
     container_name: nginx
     build: ./images/nginx
-    env_file: .env
-    environment:
-      - ROOT_NAME=${ROOT_NAME}
     ports:
       - "80:80"
       - "443:443"
@@ -14,7 +11,7 @@ services:
       - ./hosts:/etc/nginx/conf.d
       - ./www:/var/www
       - ./logs:/var/log/nginx
-    working_dir: /var/www/
+    working_dir: ${WORKING_DIR}${PROJECT_FOLDER}
 
     links:
       - php5.6
@@ -31,7 +28,7 @@ services:
       - mysql
     volumes:
       - ./www:/var/www
-    working_dir: /var/www/
+    working_dir: ${WORKING_DIR}${PROJECT_FOLDER}
 
   php7.0:
     build: ./images/php/php7.0
@@ -40,7 +37,7 @@ services:
       - mysql
     volumes:
       - ./www:/var/www
-    working_dir: /var/www/
+    working_dir: ${WORKING_DIR}${PROJECT_FOLDER}
 
   php7.1:
     build: ./images/php/php7.1
@@ -49,21 +46,21 @@ services:
       - mysql
     volumes:
       - ./www:/var/www
-    working_dir: /var/www/
+    working_dir: ${WORKING_DIR}${PROJECT_FOLDER}
 
 
   php7.2:
     build: ./images/php/php7.2
-    env_file: .env
     environment:
       - ROOT_NAME=${ROOT_NAME}
     user: ROOT_NAME
+    env_file: .env
     container_name: php7.2
     links:
       - mysql
     volumes:
       - ./www:/var/www
-    working_dir: /var/www/
+    working_dir: ${WORKING_DIR}${PROJECT_FOLDER}
 
 
   php7.3:
@@ -73,7 +70,7 @@ services:
       - mysql
     volumes:
       - ./www:/var/www
-    working_dir: /var/www/
+    working_dir: ${WORKING_DIR}${PROJECT_FOLDER}
 
   php7.2-sybase:
     build: ./images/php/php7.2-sybase
@@ -82,7 +79,7 @@ services:
       - mysql
     volumes:
       - ./www:/var/www
-    working_dir: /var/www/
+    working_dir: ${WORKING_DIR}${PROJECT_FOLDER}
 
   memcached:
     image: memcached:latest
@@ -117,13 +114,13 @@ services:
 
 
 
-#  node:
-#    image: node:alpine
-#    container_name: node
-#    volumes:
-#      - ./www/hostel:/app
-#    working_dir: /app
-#    command: npm install
+  node:
+    image: node:alpine
+    container_name: node
+    volumes:
+      - ./www/hostel:/app
+    working_dir: /app/${PROJECT_FOLDER}
+    command: npm install
 
 
 #Example extends module
