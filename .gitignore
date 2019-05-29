@@ -7,5 +7,6 @@
 /hosts/*
 !/www/readme.md
 /configs
-/dump
+/dump/*
 !www/site.example/index.php
+!/dump/index.html

@@ -97,6 +97,7 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
       - ./images/mysql/my.cnf:/etc/my.cnf
+      - ./dump:/dump
     environment:
       - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=root
@@ -120,7 +121,7 @@ services:
     volumes:
       - ./www/hostel:/app
     working_dir: /app/${PROJECT_FOLDER}
-    command: npm install
+#    command: npm install
 
 
 #Example extends module
