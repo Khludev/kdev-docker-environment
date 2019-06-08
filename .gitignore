@@ -3,8 +3,8 @@
 /logs/
 /www/*
 !/www/site.example
-/mysql/
-/hosts/*
+images/mysql/mysql/
+/images/nginx/hosts
 !/www/readme.md
 /configs
 /dump/*

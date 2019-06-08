@@ -8,7 +8,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./hosts:/etc/nginx/conf.d
+      - ./images/nginx/hosts:/etc/nginx/conf.d
       - ./www:/var/www
       - ./logs:/var/log/nginx
     working_dir: ${WORKING_DIR}${PROJECT_FOLDER}
@@ -95,7 +95,7 @@ services:
       - "3306:3306"
     restart: always
     volumes:
-      - ./mysql:/var/lib/mysql
+      - ./images/mysql/mysql:/var/lib/mysql
       - ./images/mysql/my.cnf:/etc/my.cnf
       - ./dump:/dump
     environment:
