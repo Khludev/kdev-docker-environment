@@ -10,3 +10,4 @@
 /dump/*
 !www/site.example/index.php
 !/dump/index.html
+/images/pure-ftpd

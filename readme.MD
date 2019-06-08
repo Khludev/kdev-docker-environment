@@ -56,3 +56,9 @@ docker exec -it name_container bash (У файле .env задать имя по
 docker rm container_id
 
 
+**Иногда нужен доступ по фтп(цмс например)**
+      PUBLICHOST: "localhost"
+      FTP_USER_NAME: root
+      FTP_USER_PASS: root
+
+
