@@ -1,64 +1,88 @@
-**запуск** 
-скопировать и переименовать файл .env.example у .env
+# Docker environment
+#### О проекте
+**Докер среда для запуска нескольких сайтов с разными настройками для локальной розработки web приложений.**
 
- docker-compose up -d (Если первый раз то займет много времени так ка будут загружаться все images)
+#### Запуск
+Скопировать и переименовать файл .env.example у .env
+
+```bash
+ docker-compose up -d
+```
+>  (Если первый раз то займет много времени так ка будут загружаться все images)
  
-**стоп**
+#### Остановка
+```bash
  docker-compose stop
-  
- 
-**<<-   -    -   -   -   -   >>**
-**Заметки**
-  1) - После установки phpmyadmin будет доступен по порту 8080 (http://localhost:8080/) / pass - root, user - root
-  2) - Для добавления нового сайта 
-            a) - создать папку для сайта в папке www/ или зделать пулл из репозитория
-            b) - прописать адрес в файле /etc/hosts (локально на ubuntu)
-            c) - создать файл конвига в папке hosts
-            
-            
-Команды composer, php запускаем из контейнера php7.2 где они уже установлены
-**<<-   -    -   -   -   -   >>**  
-  Импорт данных из .sql файла
-    1- Загружаем файл в папку /dump
-    2- Создаем БД через phpMyadmin или
-        зайдем в mysql контейнер и выполним команду "mysql -u root -p"
-        Создаем новую бд командой "CREATE DATABASE new_database;" и выходим "exit"
-    3- Выполняем команду "mysql -u root -p new_database < data-dump.sql" (пароль root)
-    4- Ждем окончания выполнения скрипта
+```
+#### Заметки
 
-**<<-   -    -   -   -   -   >>**
- 
- Также возможны проблемы с уже занятыми портами, их нужно будет освободить 
- 
- **Остановить  mysql**
+##### PhpMyadmin
+После установки **phpmyadmin** будет доступен по порту **8080** (http://localhost:8080/) / **pass - root, user - root**
+#### Добавить сайт
+1. Создать папку для сайта в папке www/ или зделать пулл из репозитория
+2. Прописать адрес в файле /etc/hosts (локально на ubuntu)
+3. Создать файл конвига в папке images/nginx/hosts/* (скопировать site.example.conf, переименовать и зменить настройки)*
+
+#### Composer, PHP
+Команды composer, php запускаем из контейнера php7.2 где они уже установлены
+
+#### Импорт данных из .sql файла
+Можем заимпортить через  **phpMyadmin** предварительно создав базу
+
+##### Через командную строку
+1. Загружаем файл в папку /dump
+2. Из  **mysql** контейнера выполним команду **mysql -u root -p** и** CREATE DATABASE new_database;** и выходим  **exit**;
+3. Импортим **mysql -u root -p new_database < data-dump.sql** (пароль **root**)
+4. Ждем окончания выполнения скрипта
+
+#### Возможные проблемы
+Заняты порты, их нужно будет освободить
+
+##### Остановить
+**  mysql**
+```bash
  sudo /etc/init.d/mysql stop
- 
+```
+
  **apache2 stop**
+```bash
  sudo service apache2 stop
- 
+```
+**mariadb**
+```bash
  sudo service mariadb stop
+```
  
  **nginx stop**
  sudo service nginx stop
 
-/****/
-Дом команды
-**пересобрать контейнер**
-docker-compose build --no-cache nginx mysql
+
+#### Дополнительные команды
+**Пересобрать контейнер**
+```bash
+docker-compose build --no-cache *container_name*
+```
 
 **Удалить  промежуточные (хорошие) образы**
+```bash
 docker rmi $(docker images -f "dangling=true" -q)
+```
 
 **зайти в контейнер**
-docker exec -it name_container bash (У файле .env задать имя пользвателя по каким заходить в контейнер)
+```bash
+docker exec -it name_container bash 
+```
 
 **Удалить контейнер**
+```bash
 docker rm container_id
+```
 
-
-**Иногда нужен доступ по фтп(цмс например)**
+**Доступ по фтп**
+```bash
       PUBLICHOST: "localhost"
       FTP_USER_NAME: root
       FTP_USER_PASS: root
+```
 
 
