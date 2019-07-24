@@ -19,7 +19,6 @@ services:
       - php7.1
       - php7.2
       - php7.3
-      - php7.2-sybase
 
   php5.6:
     build: ./images/php/php5.6
@@ -48,13 +47,8 @@ services:
       - ./www:/var/www
     working_dir: ${WORKING_DIR}${PROJECT_FOLDER}
 
-
   php7.2:
     build: ./images/php/php7.2
-    environment:
-      - ROOT_NAME=${ROOT_NAME}
-    user: ROOT_NAME
-    env_file: .env
     container_name: php7.2
     links:
       - mysql
@@ -62,19 +56,9 @@ services:
       - ./www:/var/www
     working_dir: ${WORKING_DIR}${PROJECT_FOLDER}
 
-
   php7.3:
     build: ./images/php/php7.3
     container_name: php7.3
-    links:
-      - mysql
-    volumes:
-      - ./www:/var/www
-    working_dir: ${WORKING_DIR}${PROJECT_FOLDER}
-
-  php7.2-sybase:
-    build: ./images/php/php7.2-sybase
-    container_name: php7.2-sybase
     links:
       - mysql
     volumes:
