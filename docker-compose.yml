@@ -8,7 +8,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./images/nginx/hosts:/etc/nginx/conf.d
+      - ./hosts:/etc/nginx/conf.d
       - ./www:/var/www
       - ./logs:/var/log/nginx
     working_dir: ${WORKING_DIR}${PROJECT_FOLDER}
@@ -16,7 +16,7 @@ services:
     links:
       - php5.6
       - php7.0
-      - php7.1
+#      - php7.1
       - php7.2
       - php7.3
 
@@ -38,14 +38,14 @@ services:
       - ./www:/var/www
     working_dir: ${WORKING_DIR}${PROJECT_FOLDER}
 
-  php7.1:
-    build: ./images/php/php7.1
-    container_name: php7.1
-    links:
-      - mysql
-    volumes:
-      - ./www:/var/www
-    working_dir: ${WORKING_DIR}${PROJECT_FOLDER}
+#  php7.1:
+#    build: ./images/php/php7.1
+#    container_name: php7.1
+#    links:
+#      - mysql
+#    volumes:
+#      - ./www:/var/www
+#    working_dir: ${WORKING_DIR}${PROJECT_FOLDER}
 
   php7.2:
     build: ./images/php/php7.2
@@ -108,7 +108,7 @@ services:
       - "./images/pure-ftpd/passwd:/etc/pure-ftpd/passwd"
 
     environment:
-      PUBLICHOST: "localhost"
+      PUBLICHOST: "volyn.tabloyid.loc"
       FTP_USER_NAME: root
       FTP_USER_PASS: root
       FTP_USER_HOME: /home/username
