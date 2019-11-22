@@ -1,2 +1,3 @@
 sudo echo '127.0.0.1     media-forum.loc' | sudo tee -a /etc/hosts
 sudo echo '127.0.0.1     media18.wmf.com.loc' | sudo tee -a /etc/hosts
+sudo echo '127.0.0.1     drob.loc' | sudo tee -a /etc/hosts

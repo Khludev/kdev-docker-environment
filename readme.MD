@@ -32,7 +32,8 @@
 ##### Через командную строку
 1. Загружаем файл в папку /dump
 2. Из  **mysql** контейнера выполним команду **mysql -u root -p** и** CREATE DATABASE new_database;** и выходим  **exit**;
-3. Импортим **mysql -u root -p new_database < data-dump.sql** (пароль **root**)
+3. Импортим **mysql -u sid-media_user -p sid-media_rayon <  /home/sid-media/tmp/08-11-2019-sid-media_rayon
+
 4. Ждем окончания выполнения скрипта
 
 #### Возможные проблемы
@@ -40,7 +41,7 @@
 
 Возможно придеться зделать перенаправлене в /etc/hosts для выполнения пиграций через команду artisan
 127.0.0.1       mysql
-
+mysql -u sid-media_user -p -h  localhost -D sid-media_rayon  --binary-mode -o < /home/sid-media/tmp/08-11-2019-sid-media_rayon.gz
 
 ##### Остановить
 **  mysql**
@@ -93,5 +94,10 @@ docker rm container_id
 **Символическая ссылка**
 Здесь нужно создавать ссылку внутри контейнера например в nginx и делать символическую ссылку внутри контейнера
 
-Либо  ln -s /var/www/папка-проекта/путь-папке /var/www/папка-проекта/путь-папке/название
+docker exec -it nginx  bash 
+
+ln -s /var/www/папка-проекта/путь-папке /var/www/папка-проекта/путь-папке/название
+
+example - var/www/laravel/storage/app/public /var/www/laravel/public/storage
+
 

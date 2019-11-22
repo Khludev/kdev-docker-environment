@@ -104,6 +104,13 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
         echo "alias composer='composer'" >> /root/.bashrc && \
         composer
 
+RUN apt-get update -y && apt-get install -y libpng-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev zlib1g-dev libicu-dev libxml2-dev ghostscript imagemagick poppler-utils\
+&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/lib/ \
+&& docker-php-ext-install bcmath mbstring pdo_mysql gd zip intl soap
+RUN docker-php-ext-install exif
+RUN pecl install mcrypt-1.0.1
+RUN docker-php-ext-enable mcrypt
+
 # Possible values for ext-name:
 # bcmath bz2 calendar ctype curl dba dom enchant exif fileinfo filter ftp gd gettext gmp hash iconv imap interbase intl
 # json ldap mbstring mcrypt mssql mysql mysqli oci8 odbc opcache pcntl pdo pdo_dblib pdo_firebird pdo_mysql pdo_oci
