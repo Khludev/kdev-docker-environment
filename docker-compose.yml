@@ -79,7 +79,7 @@ services:
       - "3306:3306"
     restart: always
     volumes:
-      - ./images/mysql/mysql:/var/lib/mysql
+      - ./images/mysql/mysql:/var/lib/mysql/
       - ./images/mysql/my.cnf:/etc/my.cnf
       - ./dump:/dump
     environment:

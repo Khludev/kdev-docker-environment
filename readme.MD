@@ -91,6 +91,10 @@ docker rm container_id
 ```
 
 
+**БАГ из mysql_mode** (ни в какую не применялись настройки из скопированого файла)
+docker rmi $(docker images -f "dangling=true" -q)
+docker rm mysql (возможно предідущая команда и не нужна)
+
 **Символическая ссылка**
 Здесь нужно создавать ссылку внутри контейнера например в nginx и делать символическую ссылку внутри контейнера
 
@@ -99,5 +103,7 @@ docker exec -it nginx  bash
 ln -s /var/www/папка-проекта/путь-папке /var/www/папка-проекта/путь-папке/название
 
 example - var/www/laravel/storage/app/public /var/www/laravel/public/storage
+
+
 
 
