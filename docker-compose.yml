@@ -16,9 +16,10 @@ services:
     links:
       - php5.6
       - php7.0
-#      - php7.1
+      #      - php7.1
       - php7.2
       - php7.3
+      - redis
 
   php5.6:
     build: ./images/php/php5.6
@@ -38,14 +39,14 @@ services:
       - ./www:/var/www
     working_dir: /var/www
 
-#  php7.1:
-#    build: ./images/php/php7.1
-#    container_name: php7.1
-#    links:
-#      - mysql
-#    volumes:
-#      - ./www:/var/www
-#    working_dir: /var/www
+  #  php7.1:
+  #    build: ./images/php/php7.1
+  #    container_name: php7.1
+  #    links:
+  #      - mysql
+  #    volumes:
+  #      - ./www:/var/www
+  #    working_dir: /var/www
 
   php7.2:
     build: ./images/php/php7.2
@@ -61,6 +62,7 @@ services:
     container_name: php7.3
     links:
       - mysql
+      - redis
     volumes:
       - ./www:/var/www
     working_dir: /var/www
@@ -96,6 +98,12 @@ services:
       - PMA_POR=3306
     ports:
       - '8080:80'
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+      - 6379:6379
 
 #  ftpd_server:
 #    image: stilliard/pure-ftpd:hardened

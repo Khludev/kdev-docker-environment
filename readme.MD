@@ -104,6 +104,12 @@ ln -s /var/www/папка-проекта/путь-папке /var/www/папка
 
 example - var/www/laravel/storage/app/public /var/www/laravel/public/storage
 
+Или для Laravel artisan:
+docker exec -it php7.3  bash 
+cd /var/www/project_folder
+php artisan storage:link
+
+
 
 
 

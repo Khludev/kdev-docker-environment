@@ -1,3 +1,9 @@
 sudo echo '127.0.0.1     media-forum.loc' | sudo tee -a /etc/hosts
 sudo echo '127.0.0.1     media18.wmf.com.loc' | sudo tee -a /etc/hosts
 sudo echo '127.0.0.1     drob.loc' | sudo tee -a /etc/hosts
+sudo echo '127.0.0.1     ku-dev.loc' | sudo tee -a /etc/hosts
+
+Rayon new
+sudo echo '127.0.0.1     kowel.new-rayon.in.loc' | sudo tee -a /etc/hosts
+sudo echo '127.0.0.1     business.new-rayon.in.loc' | sudo tee -a /etc/hosts
+sudo echo '127.0.0.1    redis' | sudo tee -a /etc/hosts
